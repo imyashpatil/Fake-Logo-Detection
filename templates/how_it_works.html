@@ -1,0 +1,31 @@
+{% extends "base.html" %} {% block title %}How It Works - Fake Logo Detection{%
+endblock %} {% block extra_css %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/howitworks.css') }}"
+/>
+{% endblock %} {% block content %}
+<section class="how-it-works-container">
+  <h1>How It Works</h1>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-icon"><i class="fa-solid fa-upload"></i></div>
+      <h3>1. Upload Logo</h3>
+      <p>Simply upload the logo image you want to verify.</p>
+    </div>
+
+    <div class="step">
+      <div class="step-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+      <h3>2. Detection & Analysis</h3>
+      <p>Our AI model analyzes the logo using advanced algorithms.</p>
+    </div>
+
+    <div class="step">
+      <div class="step-icon"><i class="fa-solid fa-check-circle"></i></div>
+      <h3>3. Get Results</h3>
+      <p>Receive instant feedback on whether the logo is real or fake.</p>
+    </div>
+  </div>
+</section>
+{% endblock %}

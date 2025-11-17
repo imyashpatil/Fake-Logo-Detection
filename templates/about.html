@@ -1,0 +1,50 @@
+{% extends "base.html" %} {% block title %}About Us - Fake Logo Detection{%
+endblock %} {% block extra_css %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/about.css') }}"
+/>
+{% endblock %} {% block content %}
+<div class="about-container">
+  <section class="about-section">
+    <h1>About Us</h1>
+    <p>
+      We are a team of dedicated developers passionate about crafting
+      exceptional digital solutions. Our mission is to innovate, design, and
+      deliver cutting-edge web applications that help individuals and businesses
+      succeed in the digital world.
+    </p>
+
+    <h2>Our Team</h2>
+    <div class="team-members">
+      <div class="member">
+        <h3>Ritesh Pate</h3>
+      </div>
+      <div class="member">
+        <h3>Abhishek Patil</h3>
+      </div>
+      <div class="member">
+        <h3>Yash Patil</h3>
+      </div>
+      <div class="member">
+        <h3>Prerana Randhave</h3>
+      </div>
+    </div>
+
+    <div class="social-icons">
+      <a href="https://plus.google.com/" target="_blank"
+        ><i class="fa-brands fa-google-plus-g"></i
+      ></a>
+      <a href="https://facebook.com/" target="_blank"
+        ><i class="fa-brands fa-facebook-f"></i
+      ></a>
+      <a href="https://github.com/" target="_blank"
+        ><i class="fa-brands fa-github"></i
+      ></a>
+      <a href="https://linkedin.com/" target="_blank"
+        ><i class="fa-brands fa-linkedin-in"></i
+      ></a>
+    </div>
+  </section>
+</div>
+{% endblock %}

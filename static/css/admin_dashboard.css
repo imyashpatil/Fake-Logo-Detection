@@ -1,0 +1,151 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    width: 100%;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #e0eafc, #cfdef3);
+    overflow-x: hidden;
+    animation: fadeIn 0.8s ease-in;
+}
+
+/* Navbar */
+.navbar {
+    width: 100%;
+    padding: 1rem 2rem;
+    background-color: #6a11cb;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+}
+
+.navbar-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.logout-btn {
+    background-color: #ff4d6d;
+    color: white;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+.logout-btn:hover {
+    background-color: #e63950;
+    transform: scale(1.05);
+}
+
+/* Admin Profile */
+.admin-profile {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.admin-profile-pic {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #6a11cb;
+}
+
+.admin-profile h2 {
+    margin-top: 0.8rem;
+    color: #333;
+}
+
+/* Container */
+.dashboard-container {
+    margin: 3rem auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    max-width: 900px;
+    width: 90%;
+    text-align: center;
+    animation: slideIn 0.5s ease-out;
+}
+
+.dashboard-container h2 {
+    margin-bottom: 1rem;
+    color: #6a11cb;
+}
+
+/* Search Form */
+.search-form {
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.search-form input[type="text"] {
+    padding: 0.5rem;
+    width: 60%;
+    border: 1px solid #ccc;
+    border-radius: 5px 0 0 5px;
+    outline: none;
+}
+
+.search-form button {
+    padding: 0.5rem 1rem;
+    border: none;
+    background-color: #6a11cb;
+    color: white;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.search-form button:hover {
+    background-color: #2575fc;
+    transform: scale(1.05);
+}
+
+/* Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background: linear-gradient(45deg, #6a11cb, #2575fc);
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.delete-btn {
+    background-color: #ff4d6d;
+    color: white;
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.delete-btn:hover {
+    background-color: #e63950;
+    transform: scale(1.05);
+}

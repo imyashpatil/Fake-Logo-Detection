@@ -1,0 +1,121 @@
+/* Center the About Section */
+.about-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 120px); /* Adjust for navbar height */
+  background: linear-gradient(135deg, #f0f2f5, #dfe6e9);
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* About Section Card */
+.about-section {
+  background: #ffffff;
+  max-width: 600px;
+  width: 100%;
+  border-radius: 15px;
+  padding: 40px 30px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  animation: fadeIn 1s ease-in-out;
+  margin: 40px auto; /* Center section without navbar offset */
+}
+
+/*  Headings */
+.about-section h1 {
+  font-size: 2.2rem;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.about-section h2 {
+  font-size: 1.6rem;
+  color: #2c3e50;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+/* Paragraphs */
+.about-section p {
+  font-size: 1.05rem;
+  color: #555;
+  line-height: 1.8;
+  text-align: justify;
+  margin-bottom: 20px;
+}
+
+/* Team Members Grid */
+.team-members {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.member {
+  flex: 1 1 45%;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.member:hover {
+  transform: translateY(-4px);
+}
+
+/*Social Icons */
+.social-icons {
+  margin-top: 25px;
+}
+
+.social-icons a {
+  color: #333;
+  font-size: 24px;
+  margin: 0 8px;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: blueviolet;
+  transform: scale(1.2);
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/*Responsive Design */
+@media (max-width: 768px) {
+  .about-container {
+    min-height: auto;
+    padding-top: 40px; /* Normal padding (no navbar logic) */
+  }
+
+  .about-section {
+    padding: 25px 20px;
+    margin: 40px auto;
+  }
+
+  .team-members {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .member {
+    width: 100%;
+  }
+}

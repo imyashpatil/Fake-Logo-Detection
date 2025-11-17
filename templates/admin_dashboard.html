@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/admin_dashboard.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar">
+      <div class="navbar-title">Admin Dashboard</div>
+
+      <!-- ✔ Show Logout ONLY if admin is logged in -->
+      {% if session.get('admin_logged_in') %}
+      <a href="{{ url_for('admin_logout_route') }}" class="logout-btn">
+        <i class="fas fa-sign-out-alt"></i> Logout
+      </a>
+      {% endif %}
+    </nav>
+
+    <!-- Admin Profile Section -->
+    <div class="admin-profile">
+      <img
+        src="{{ url_for('static', filename='images/admin.jpg') }}"
+        alt="Admin Profile Picture"
+        class="admin-profile-pic"
+      />
+
+      <!-- ✔ Show admin email (optional) -->
+      {% if session.get('admin_email') %}
+      <h2>Welcome, {{ session.get('admin_email') }}!</h2>
+      {% else %}
+      <h2>Welcome, Admin!</h2>
+      {% endif %}
+    </div>
+
+    <!-- Main Content -->
+    <div class="dashboard-container">
+      <h2>User Data</h2>
+
+      <!-- Search Bar -->
+      <form
+        method="GET"
+        action="{{ url_for('admin_dashboard') }}"
+        class="search-form"
+      >
+        <input
+          type="text"
+          name="search"
+          placeholder="Search users..."
+          value="{{ request.args.get('search', '') }}"
+        />
+        <button type="submit"><i class="fas fa-search"></i> Search</button>
+      </form>
+
+      <!-- User Table -->
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for user in users.items %}
+          <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.email }}</td>
+            <td>
+              <form
+                method="POST"
+                action="{{ url_for('delete_user', user_id=user.id) }}"
+                onsubmit="return confirm('Are you sure you want to delete this user?');"
+              >
+                <button type="submit" class="delete-btn">
+                  <i class="fas fa-trash"></i> Delete
+                </button>
+              </form>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+      <!-- Pagination Controls -->
+      <div class="pagination">
+        {% if users.has_prev %}
+        <a
+          href="{{ url_for('admin_dashboard', page=users.prev_num, search=request.args.get('search', '')) }}"
+        >
+          <i class="fas fa-chevron-left"></i> Previous
+        </a>
+        {% else %}
+        <span class="disabled"
+          ><i class="fas fa-chevron-left"></i> Previous</span
+        >
+        {% endif %}
+
+        <span>Page {{ users.page }} of {{ users.pages }}</span>
+
+        {% if users.has_next %}
+        <a
+          href="{{ url_for('admin_dashboard', page=users.next_num, search=request.args.get('search', '')) }}"
+        >
+          Next <i class="fas fa-chevron-right"></i>
+        </a>
+        {% else %}
+        <span class="disabled">Next <i class="fas fa-chevron-right"></i></span>
+        {% endif %}
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,46 @@
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# ---- Virtual Environment ----
+venv/
+.venv/
+env/
+ENV/
+*/venv/
+*/.venv/
+
+# ---- IDE / OS files ----
+.vscode/
+.idea/
+.DS_Store
+
+# ---- Logs ----
+*.log
+
+# ---- Bytecode ----
+*.pyc
+
+# ---- Jupyter ----
+.ipynb_checkpoints/
+
+# ---- Build / Dist ----
+build/
+dist/
+*.egg-info/
+
+# ---- ML / Deep Learning ----
+# Large model checkpoints (optional)
+*.h5
+*.hdf5
+*.ckpt
+*.pth
+*.pt
+*.tflite
+
+# ---- Cache ----
+cache/
+logs/

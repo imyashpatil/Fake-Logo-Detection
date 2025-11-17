@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User History - Logo Classification</title>
+    <link rel="stylesheet" href="/static/css/user.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav>
+      <div class="logo">Logo Classifier</div>
+      <ul id="menu-list">
+        <li>
+          <a href="{{ url_for('user_page', user_id=user.id) }}">Dashboard</a>
+        </li>
+        <li>
+          <a href="{{ url_for('history_page', user_id=user.id) }}">History</a>
+        </li>
+        <li><a href="/logout">Logout</a></li>
+      </ul>
+    </nav>
+
+    <!-- User Section -->
+    <div class="section">
+      <h1>📜 History of Classifications</h1>
+      <h2>Welcome, <span style="color: #2575fc">{{ user.name }}</span>!</h2>
+
+      {% if history %}
+      <div class="history-list">
+        {% for result in history %}
+        <div class="history-item">
+          <img
+            src="{{ url_for('static', filename='uploads/' + result.original_image) }}"
+            alt="Uploaded Logo"
+            style="max-width: 100px; height: auto"
+          />
+
+          <div class="history-details">
+            <p><strong>Status:</strong> {{ result.logo_status }}</p>
+            <p>
+              <strong>Confidence:</strong> {{
+              "%.2f"|format(result.confidence_score) }}%
+            </p>
+
+            <p>
+              <strong>Classified On:</strong> {{
+              result.timestamp.strftime('%Y-%m-%d %H:%M:%S') }}
+            </p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <p>No classification history available.</p>
+      {% endif %}
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <p>© 2025 Fake Logo Detection. All Rights Reserved.</p>
+    </footer>
+  </body>
+</html>

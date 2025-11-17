@@ -1,0 +1,82 @@
+/* Import Montserrat font */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Center the admin login section like About page */
+#admin-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 120px);
+    background: linear-gradient(135deg, #f0f2f5, #dfe6e9);
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+
+.admin-login-container {
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    background-color: white;
+}
+
+.admin-login-container h1 {
+    margin-bottom: 20px;
+}
+
+.admin-login-container form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.admin-login-container input {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.admin-login-container button {
+    padding: 10px;
+    border: none;
+    background-color: #2575fc;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.admin-login-container button:hover {
+    background-color: #1a5ed9;
+}
+
+.admin-login-container .social-icons {
+    margin-top: 20px;
+}
+
+.admin-login-container .social-icons a {
+    margin: 0 10px;
+    font-size: 20px;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.admin-login-container .social-icons a:hover {
+    color: #2575fc;
+}
+
+.admin-login-container p {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #555;
+}

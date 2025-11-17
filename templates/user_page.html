@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Dashboard - Logo Classification</title>
+    <link rel="stylesheet" href="/static/css/user.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav>
+      <div class="logo">Logo Classifier</div>
+      <ul id="menu-list">
+        <li>
+          <a href="{{ url_for('user_page', user_id=user.id) }}">Dashboard</a>
+        </li>
+        <li>
+          <a href="{{ url_for('history_page', user_id=user.id) }}">History</a>
+        </li>
+        <li><a href="/logout">Logout</a></li>
+      </ul>
+      <div class="menu-icon" onclick="toggleMenu()"></div>
+    </nav>
+
+    <!-- User Section -->
+    <div class="section">
+      <h1>👋 Welcome, <span style="color: #2575fc">{{ user.name }}</span>!</h1>
+      <p>Email: <strong>{{ user.email }}</strong></p>
+
+      <!-- Upload Area -->
+      <div class="upload-box">
+        <h2>Upload Logo for Classification</h2>
+        <form
+          action="{{ url_for('user_page', user_id=user.id) }}"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          <label class="custom-file-upload">
+            <input
+              type="file"
+              name="logo_image"
+              accept="image/*"
+              required
+            /><br />
+            <i class="fa-solid fa-cloud-arrow-up"></i> Choose Image
+          </label>
+
+          <br />
+          <button type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i> Classify Logo
+          </button>
+        </form>
+      </div>
+
+      <!-- Result Section -->
+      {% if classification_result %}
+      <div class="result">
+        <h3>📝 Classification Result:</h3>
+
+        <!-- Display uploaded image -->
+        <h4>📷 Uploaded Image:</h4>
+        <img
+          src="{{ uploaded_image_url }}"
+          alt="Uploaded Logo"
+          style="
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+          "
+        />
+
+        <p class="status-text" style="color: {{ color }};">
+          <strong>Status:</strong> {{ logo_status }}
+        </p>
+
+        <h4>📊 Metrics:</h4>
+        <ul style="list-style-type: none; padding: 0">
+          <li>
+            <i class="fa-solid fa-thumbs-up" style="color: #2575fc"></i>
+            Confidence: <strong>{{ confidence_score }}%</strong>
+          </li>
+          <li>
+            <i class="fa-solid fa-check-circle" style="color: #00cc00"></i>
+            Precision: <strong>{{ model_precision }}</strong>
+          </li>
+          <li>
+            <i class="fa-solid fa-check-circle" style="color: #00cc00"></i>
+            Recall: <strong>{{ model_recall }}</strong>
+          </li>
+          <li>
+            <i class="fa-solid fa-times-circle" style="color: #ff4d4d"></i>
+            Error: <strong>{{ model_error }}</strong>
+          </li>
+        </ul>
+      </div>
+      {% endif %}
+
+      <!-- Processed Image Preview -->
+      {% if processed_image_url %}
+      <div class="uploaded-image">
+        <h3>🛠️ Processed Logo:</h3>
+        <img
+          src="{{ processed_image_url }}"
+          alt="Processed Logo"
+          class="image-preview"
+        />
+      </div>
+      {% endif %}
+    </div>
+
+    <footer>
+      <p>© 2025 Fake Logo Detection. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+      function toggleMenu() {
+        var menuList = document.getElementById("menu-list");
+        menuList.classList.toggle("show");
+      }
+    </script>
+  </body>
+</html>

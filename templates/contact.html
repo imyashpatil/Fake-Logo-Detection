@@ -1,0 +1,32 @@
+{% extends "base.html" %} {% block title %}Contact Us - Fake Logo Detection{%
+endblock %} {% block extra_css %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/contact.css') }}"
+/>
+{% endblock %} {% block content %}
+<div class="contact-container">
+  <section class="contact-section">
+    <h1>Contact Us</h1>
+    <p>
+      Have questions or want to work with us? Feel free to reach out! We are
+      always happy to connect and collaborate.
+    </p>
+
+    <div class="contact-details">
+      <p><strong>Email:</strong> contact@fakelogo.com</p>
+      <p><strong>Phone:</strong> +91 234 567 890</p>
+      <p><strong>Address:</strong> 123 Digital Street, Pune</p>
+    </div>
+
+    <div class="social-icons">
+      <a href="mailto:contact@fakelogo.com"
+        ><i class="fa-brands fa-google-plus-g"></i
+      ></a>
+      <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+      <a href="#"><i class="fa-brands fa-github"></i></a>
+      <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+    </div>
+  </section>
+</div>
+{% endblock %}

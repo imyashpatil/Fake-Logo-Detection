@@ -1,0 +1,31 @@
+{% extends "base.html" %} {% block title %}Admin Login - Fake Logo Detection{%
+endblock %} {% block extra_css %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/admin.css') }}"
+/>
+{% endblock %} {% block content %}
+
+<div id="admin-login">
+  <div class="admin-login-container">
+    <h1>Admin Login</h1>
+
+    <form method="POST" action="{{ url_for('admin_login') }}">
+      <input
+        type="email"
+        placeholder="Admin Email"
+        name="admin_email"
+        required
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        name="admin_password"
+        required
+      />
+      <button type="submit">Sign In</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

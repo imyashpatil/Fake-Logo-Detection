@@ -1,0 +1,99 @@
+from flask import Flask, send_from_directory, request, redirect, url_for, render_template
+
+from flask import Flask, send_from_directory, request, redirect, url_for
+from models import db, User
+import os
+from dotenv import load_dotenv
+
+
+
+app = Flask(__name__)
+
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# Database Config
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(BASE_DIR, 'instance', 'app.db')
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+# Initialize database
+db.init_app(app)
+
+# Create DB tables manually using app context
+with app.app_context():
+    db.create_all()
+
+load_dotenv()
+
+app.secret_key = os.getenv('SECRET_KEY')
+
+# Serve index.html
+@app.route('/')
+def home():
+    return send_from_directory(BASE_DIR, 'index.html')
+
+# Static files
+@app.route('/static/<path:path>')
+def static_files(path):
+    return send_from_directory(os.path.join(BASE_DIR, 'static'), path)
+
+# Register route
+@app.route('/register', methods=['POST'])
+def register():
+    name = request.form.get('name')
+    email = request.form.get('email')
+    password = request.form.get('password')
+
+    if User.query.filter_by(email=email).first():
+        return 'User already exists!'
+
+    new_user = User(name=name, email=email, password=password)
+    db.session.add(new_user)
+    db.session.commit()
+    return redirect(url_for('home'))
+
+# Login route
+@app.route('/login', methods=['POST'])
+def login():
+    email = request.form.get('email')
+    password = request.form.get('password')
+
+    user = User.query.filter_by(email=email, password=password).first()
+    if user:
+        return f"Welcome {user.name}!"
+    else:
+        return "Invalid credentials"
+
+# Admin Login Route
+@app.route('/admin/login', methods=['GET', 'POST'])
+def admin_login():
+    if request.method == 'POST':
+        email = request.form.get('admin_email')
+        password = request.form.get('admin_password')
+
+        if email == 'admin@example.com' and password == 'admin123':
+            session['admin_logged_in'] = True
+            users = User.query.all()
+            return render_template('admin_dashboard.html', users=users)
+        else:
+            error = "Invalid Admin Credentials"
+            return render_template('admin_login.html', error=error)
+    return render_template('admin_login.html')
+
+@app.route('/admin/logout')
+def admin_logout():
+    session.pop('admin_logged_in', None)
+    return redirect(url_for('home'))
+
+@app.route('/admin/delete_user/<int:user_id>', methods=['POST'])
+def delete_user(user_id):
+    if session.get('admin_logged_in'):
+        user = User.query.get_or_404(user_id)
+        db.session.delete(user)
+        db.session.commit()
+        return redirect(url_for('admin_login'))  # Refresh dashboard
+    else:
+        return redirect(url_for('home'))
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
