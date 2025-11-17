@@ -85,10 +85,7 @@ Create a `.env` file in the project root:
 SECRET_KEY=your_secret_key_here
 ```
 
-## License
+Author
 
-This project is open source and available under the MIT License.
-
-## Contact
-
-For questions or support, please contact the project maintainer.
+Yash Patil
+GitHub: [@imyashpatil](https://github.com/imyashpatil)
